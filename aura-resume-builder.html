@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aura Resume Builder Enterprise | ATS Resume Builder, Analyzer & Keyword Optimizer</title>
+  <meta name="description" content="Build ATS-friendly resumes, analyze score, optimize keywords, tailor content for job descriptions, and export PDF or DOCX with Aura Resume Builder Enterprise.">
+  <link rel="canonical" href="https://example.com/aura-resume-builder">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="google-site-verification" content="google-site-verification-placeholder">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aura Resume Builder Enterprise">
+  <meta property="og:description" content="Create polished ATS-compliant resumes with real-time scoring, keyword optimization, and secure local save.">
+  <meta property="og:url" content="https://example.com/aura-resume-builder">
+  <meta property="og:site_name" content="Aura Resume Builder">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aura Resume Builder Enterprise">
+  <meta name="twitter:description" content="Enterprise-ready single-file resume builder with ATS scoring and local processing.">
+
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+  <link rel="preconnect" href="https://googleads.g.doubleclick.net">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7ff;
+      --surface: rgba(255,255,255,0.82);
+      --surface-strong: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --primary: #3b82f6;
+      --secondary: #8b5cf6;
+      --success: #16a34a;
+      --warning: #ca8a04;
+      --danger: #dc2626;
+      --border: rgba(148,163,184,0.35);
+      --shadow: 0 10px 30px rgba(15,23,42,0.12);
+      --radius: 16px;
+    }
+    body.dark {
+      --bg: #0b1120;
+      --surface: rgba(17,25,40,0.8);
+      --surface-strong: #111827;
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --primary: #60a5fa;
+      --secondary: #a78bfa;
+      --success: #4ade80;
+      --warning: #facc15;
+      --danger: #fb7185;
+      --border: rgba(148,163,184,0.3);
+      --shadow: 0 10px 28px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: Inter, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    a { color: var(--primary); }
+    .container { width: min(1100px, 94%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: linear-gradient(120deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding: 12px 0;
+    }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .logo svg { width: 26px; height: 26px; }
+    .nav-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    button, select, input, textarea {
+      font: inherit; color: var(--text);
+      border: 1px solid var(--border); border-radius: 10px; background: var(--surface-strong);
+      padding: 10px 12px;
+    }
+    button { cursor: pointer; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #fff; border: 0; }
+    button.secondary { background: var(--surface-strong); color: var(--text); border: 1px solid var(--border); }
+    button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--primary), #fff 15%); outline-offset: 2px;
+    }
+    .hero { padding: 22px 0 10px; }
+    .hero-panel {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    h1,h2,h3 { margin: 0 0 10px; }
+    h1 { font-size: clamp(1.35rem, 3vw, 2rem); }
+    .muted { color: var(--muted); }
+
+    .layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; margin: 14px 0 28px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px;
+    }
+    .form-grid { display: grid; gap: 10px; }
+    .two-col { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+    textarea { min-height: 90px; resize: vertical; }
+
+    .preview {
+      background: #fff; color: #1f2937; border-radius: 12px; padding: 22px; border: 1px solid #e5e7eb; min-height: 620px;
+    }
+    .preview h2 { font-size: 1.2rem; margin-bottom: 2px; }
+    .preview .line { margin-bottom: 12px; color: #374151; }
+    .resume-section { margin-top: 14px; }
+    .resume-section h3 { font-size: 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; margin-bottom: 8px; }
+    .resume-section p, .resume-section li { font-size: 0.95rem; line-height: 1.45; }
+
+    .score-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .score-badge { font-weight: 700; padding: 8px 12px; border-radius: 999px; color: #fff; }
+    .feedback { margin: 8px 0 0; padding-left: 18px; }
+
+    .ad-wrap { margin: 20px 0; }
+    .ad-label { font-size: .82rem; color: var(--muted); margin-bottom: 6px; text-align: center; }
+    .ad-slot { min-height: 110px; background: var(--surface); border: 1px dashed var(--border); border-radius: 12px; overflow: hidden; }
+
+    .faq details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; }
+    .faq summary { font-weight: 600; cursor: pointer; }
+
+    .save-list { display: grid; gap: 8px; }
+    .save-item { display:flex; justify-content: space-between; align-items: center; gap:8px; background: var(--surface-strong); border:1px solid var(--border); border-radius:10px; padding: 8px; }
+
+    footer { margin-top: 24px; padding: 20px 0 70px; border-top: 1px solid var(--border); }
+    .footer-grid { display:grid; gap: 10px; }
+    .trust { display:flex; gap:10px; flex-wrap: wrap; }
+    .badge { padding:5px 10px; border:1px solid var(--border); border-radius:999px; font-size:.85rem; background: var(--surface); }
+
+    .mobile-ad {
+      position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface-strong);
+      border-top: 1px solid var(--border); padding: 6px 10px; z-index: 60;
+    }
+
+    @media (max-width: 920px) {
+      .layout { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; }
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #resumePreview, #resumePreview * { visibility: visible; }
+      #resumePreview { position: absolute; left: 0; top: 0; width: 100%; margin: 0; border: 0; }
+    }
+  </style>
+
+  <script type="application/ld+json" id="schemaOrg">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"Organization",
+        "name":"Aura Resume Builder",
+        "url":"https://example.com/",
+        "logo":"https://example.com/logo.png",
+        "sameAs":["https://example.com/"]
+      },
+      {
+        "@type":"WebApplication",
+        "name":"Aura Resume Builder Enterprise",
+        "url":"https://example.com/aura-resume-builder",
+        "applicationCategory":"BusinessApplication",
+        "operatingSystem":"Any",
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+        "description":"Build ATS-compliant resumes, score resume quality, optimize keywords, and export PDF or DOCX locally."
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"Is Aura Resume Builder ATS compliant?","acceptedAnswer":{"@type":"Answer","text":"Yes. Aura Resume Builder uses a clean structure without tables in the resume body and focuses on ATS-friendly formatting."}},
+          {"@type":"Question","name":"Does Aura Resume Builder process my data locally?","acceptedAnswer":{"@type":"Answer","text":"Yes. Resume drafting, scoring, keyword analysis, and save scenarios are processed in your browser with local storage support."}},
+          {"@type":"Question","name":"Can I export my resume to PDF and DOCX?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can export your resume to print-ready PDF and downloadable DOCX format directly from the app."}},
+          {"@type":"Question","name":"Which languages are supported?","acceptedAnswer":{"@type":"Answer","text":"Aura Resume Builder supports English, Spanish, French, German, and Hindi through built-in dictionary-based language switching."}},
+          {"@type":"Question","name":"Does the keyword optimizer compare job descriptions?","acceptedAnswer":{"@type":"Answer","text":"Yes. It extracts top keywords from a job description, calculates match percentage, and highlights missing terms."}}
+        ]
+      },
+      {
+        "@type":"BreadcrumbList",
+        "itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://example.com/"},
+          {"@type":"ListItem","position":2,"name":"Aura Resume Builder","item":"https://example.com/aura-resume-builder"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main navigation">
+      <div class="logo"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l8 4v6c0 5.2-3.4 9.8-8 10-4.6-.2-8-4.8-8-10V6l8-4z" stroke="currentColor" stroke-width="1.8"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8"/></svg> Aura Resume Builder</div>
+      <div class="nav-actions">
+        <a href="https://example.com/" aria-label="Go to homepage">Homepage</a>
+        <select id="language" aria-label="Select language">
+          <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="hi">हिन्दी</option>
+        </select>
+        <button id="themeToggle" class="secondary" aria-label="Toggle dark mode">Dark Mode</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-labelledby="heroHeading">
+      <div class="hero-panel">
+        <h1 id="heroHeading">Enterprise Resume Builder with ATS Score & Keyword Optimization</h1>
+        <p class="muted" id="heroSub">Build a professional resume, optimize for job descriptions, and export secure local files.</p>
+      </div>
+    </section>
+
+    <div class="ad-wrap" aria-label="Advertisement section">
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+    </div>
+
+    <section class="layout">
+      <section class="card" aria-labelledby="builderTitle">
+        <h2 id="builderTitle">Resume Builder</h2>
+        <div class="form-grid">
+          <div class="two-col">
+            <div><label for="name">Name</label><input id="name" aria-label="Full name" autocomplete="name"></div>
+            <div><label for="email">Email</label><input id="email" aria-label="Email address" autocomplete="email"></div>
+          </div>
+          <div class="two-col">
+            <div><label for="phone">Phone</label><input id="phone" aria-label="Phone number" autocomplete="tel"></div>
+            <div><label for="skills">Skills</label><textarea id="skills" aria-label="Skills"></textarea></div>
+          </div>
+          <div><label for="summary">Summary</label><textarea id="summary" aria-label="Professional summary"></textarea></div>
+          <div><label for="experience">Experience</label><textarea id="experience" aria-label="Experience details"></textarea></div>
+          <div><label for="education">Education</label><textarea id="education" aria-label="Education details"></textarea></div>
+
+          <div class="score-row">
+            <button id="analyzeBtn" aria-label="Analyze resume score">Analyze Score</button>
+            <button id="optimizeBtn" class="secondary" aria-label="Run keyword optimization">Keyword Optimize</button>
+            <button id="tailorBtn" class="secondary" aria-label="Generate job specific tailoring">Tailor Resume</button>
+            <button id="pdfBtn" class="secondary" aria-label="Export resume as PDF">Export PDF</button>
+            <button id="docxBtn" class="secondary" aria-label="Export resume as DOCX">Export DOCX</button>
+          </div>
+          <p id="validation" role="status" aria-live="polite" class="muted"></p>
+          <p id="wordCount" class="muted">Words: 0</p>
+        </div>
+
+        <h3>Job Description Keyword Optimizer</h3>
+        <textarea id="jobDescription" aria-label="Job description input" placeholder="Paste job description"></textarea>
+        <div id="keywordOutput" class="muted" aria-live="polite"></div>
+
+        <h3>Job-Specific Tailor Suggestions</h3>
+        <div id="tailorOutput" class="muted" aria-live="polite"></div>
+
+        <h3>Saved Scenarios</h3>
+        <div class="score-row"><button id="saveScenario" class="secondary" aria-label="Save current scenario">Save</button></div>
+        <div id="savedList" class="save-list" aria-live="polite"></div>
+      </section>
+
+      <section class="card" aria-labelledby="previewTitle">
+        <h2 id="previewTitle">Live Resume Preview</h2>
+        <div id="resumePreview" class="preview" role="document" aria-label="Resume preview"></div>
+
+        <section class="card" aria-labelledby="scoreTitle">
+          <h3 id="scoreTitle">Resume Score Analyzer</h3>
+          <div class="score-row">
+            <span id="scoreBadge" class="score-badge" style="background:#6b7280">Score: 0</span>
+            <canvas id="scoreChart" width="160" height="160" aria-label="Score chart" role="img"></canvas>
+          </div>
+          <ul id="feedbackList" class="feedback"></ul>
+        </section>
+      </section>
+    </section>
+
+    <div class="ad-wrap" aria-label="Advertisement section">
+      <div class="ad-label">Advertisement</div>
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </div>
+    </div>
+
+    <section class="faq" aria-labelledby="faqTitle">
+      <h2 id="faqTitle">Frequently Asked Questions</h2>
+      <details><summary>Is Aura Resume Builder ATS compliant?</summary><p>Yes. Aura Resume Builder uses a clean structure without tables in the resume body and focuses on ATS-friendly formatting.</p></details>
+      <details><summary>Does Aura Resume Builder process my data locally?</summary><p>Yes. Resume drafting, scoring, keyword analysis, and save scenarios are processed in your browser with local storage support.</p></details>
+      <details><summary>Can I export my resume to PDF and DOCX?</summary><p>Yes. You can export your resume to print-ready PDF and downloadable DOCX format directly from the app.</p></details>
+      <details><summary>Which languages are supported?</summary><p>Aura Resume Builder supports English, Spanish, French, German, and Hindi through built-in dictionary-based language switching.</p></details>
+      <details><summary>Does the keyword optimizer compare job descriptions?</summary><p>Yes. It extracts top keywords from a job description, calculates match percentage, and highlights missing terms.</p></details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <strong>Aura Resume Builder</strong>
+      <div>About | Contact | Privacy Policy | Terms of Service | Disclaimer | Sitemap</div>
+      <div class="trust"><span class="badge">SSL secured</span><span class="badge">Local processing only</span><span class="badge">ATS compliant formatting</span><span class="badge">v1.0 Enterprise</span></div>
+      <div>© <span id="year"></span> Aura Resume Builder. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <div class="mobile-ad" aria-label="Sticky mobile advertisement">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle" style="display:block;height:50px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="3333333333" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+      const $ = (id) => document.getElementById(id);
+      const fields = ['name','email','phone','summary','experience','education','skills'];
+      const i18n = {
+        en: {heroSub:'Build a professional resume, optimize for job descriptions, and export secure local files.', words:'Words', score:'Score', missing:'Missing keywords', match:'Match', suggestions:'Suggestions'},
+        es: {heroSub:'Crea un currículum profesional, optimízalo para descripciones de empleo y exporta archivos locales seguros.', words:'Palabras', score:'Puntuación', missing:'Palabras clave faltantes', match:'Coincidencia', suggestions:'Sugerencias'},
+        fr: {heroSub:'Créez un CV professionnel, optimisez-le pour les offres d’emploi et exportez des fichiers locaux sécurisés.', words:'Mots', score:'Score', missing:'Mots-clés manquants', match:'Correspondance', suggestions:'Suggestions'},
+        de: {heroSub:'Erstellen Sie einen professionellen Lebenslauf, optimieren Sie ihn für Stellenbeschreibungen und exportieren Sie sichere lokale Dateien.', words:'Wörter', score:'Punktzahl', missing:'Fehlende Schlüsselwörter', match:'Übereinstimmung', suggestions:'Vorschläge'},
+        hi: {heroSub:'पेशेवर रिज़्यूमे बनाएं, जॉब डिस्क्रिप्शन के लिए ऑप्टिमाइज़ करें और सुरक्षित लोकल फाइल निर्यात करें।', words:'शब्द', score:'स्कोर', missing:'गायब कीवर्ड', match:'मेल', suggestions:'सुझाव'}
+      };
+      const stopwords = new Set('a an and are as at be by for from has have in is it its of on or that the to was were will with you your we our this those these using use job role required preferred ability experience years skills skill strong'.split(' '));
+
+      function sanitizeText(text) {
+        return String(text || '').replace(/[\u0000-\u001F\u007F]/g, ' ').trim();
+      }
+
+      function formatLines(text, root) {
+        const safe = sanitizeText(text);
+        if (!safe) return;
+        const lines = safe.split(/\n+/).map(l => l.trim()).filter(Boolean);
+        const hasBullets = lines.some(l => /^[-*•]\s+/.test(l));
+        if (hasBullets) {
+          const ul = document.createElement('ul');
+          lines.forEach(line => {
+            const li = document.createElement('li');
+            li.textContent = line.replace(/^[-*•]\s+/, '');
+            ul.appendChild(li);
+          });
+          root.appendChild(ul);
+        } else {
+          lines.forEach(line => {
+            const p = document.createElement('p');
+            p.textContent = line;
+            root.appendChild(p);
+          });
+        }
+      }
+
+      function getData() {
+        const data = {};
+        fields.forEach(f => data[f] = sanitizeText($(f).value));
+        return data;
+      }
+
+      function renderResume() {
+        const data = getData();
+        const wrap = $('resumePreview');
+        wrap.innerHTML = '';
+        const h2 = document.createElement('h2'); h2.textContent = data.name || 'Your Name';
+        const line = document.createElement('div'); line.className = 'line'; line.textContent = [data.email, data.phone].filter(Boolean).join(' | ');
+        wrap.append(h2, line);
+
+        [['summary','Summary'],['experience','Experience'],['education','Education'],['skills','Skills']].forEach(([key, label]) => {
+          const sec = document.createElement('section'); sec.className = 'resume-section';
+          const title = document.createElement('h3'); title.textContent = label;
+          sec.appendChild(title);
+          formatLines(data[key], sec);
+          wrap.appendChild(sec);
+        });
+        updateWordCount();
+      }
+
+      function updateWordCount() {
+        const lang = i18n[currentLang()] || i18n.en;
+        const text = fields.map(f => $(f).value).join(' ').trim();
+        const wc = text ? text.split(/\s+/).length : 0;
+        $('wordCount').textContent = `${lang.words}: ${wc}`;
+      }
+
+      function scoreResume() {
+        const d = getData();
+        const feedback = [];
+        let structure = 0, content = 0, ats = 0, readiness = 0;
+
+        const structureFields = ['name','email','phone','summary','experience','education','skills'];
+        structure = structureFields.reduce((acc,f)=>acc+(d[f]?3.6:0),0);
+        if (/\S+@\S+\.\S+/.test(d.email)) structure += 0.8;
+
+        const wordCount = (fields.map(f => d[f]).join(' ').match(/\b\w+\b/g) || []).length;
+        content = Math.min(25, (wordCount / 220) * 25);
+        if (wordCount < 120) feedback.push('Add more measurable achievements and role details.');
+
+        if (!/[<>]/.test(fields.map(f=>d[f]).join(''))) ats += 7;
+        if (d.experience && /[-*•]/.test(d.experience)) ats += 6;
+        if (d.skills.split(/[,\n]/).filter(Boolean).length >= 6) ats += 6;
+        if (d.summary.length >= 60) ats += 6;
+        ats = Math.min(25, ats);
+
+        readiness += d.summary.length >= 80 ? 8 : 3;
+        readiness += d.experience.length >= 120 ? 8 : 3;
+        readiness += d.education.length >= 40 ? 5 : 2;
+        readiness += d.skills.length >= 30 ? 4 : 1;
+
+        const total = Math.round(structure + content + ats + readiness);
+        if (structure < 18) feedback.push('Complete all core sections for stronger structure.');
+        if (ats < 18) feedback.push('Use bullet points and role-specific skills to improve ATS compatibility.');
+        if (readiness < 18) feedback.push('Strengthen summary and experience with outcomes and responsibilities.');
+        if (!feedback.length) feedback.push('Excellent baseline. Tailor keywords for each job posting before applying.');
+
+        const badge = $('scoreBadge');
+        const lang = i18n[currentLang()] || i18n.en;
+        badge.textContent = `${lang.score}: ${total}`;
+        badge.style.background = total >= 80 ? 'var(--success)' : total >= 60 ? 'var(--warning)' : 'var(--danger)';
+
+        const list = $('feedbackList'); list.innerHTML = '';
+        feedback.forEach(msg => { const li=document.createElement('li'); li.textContent=msg; list.appendChild(li); });
+        drawScore(total);
+      }
+
+      function extractKeywords(text) {
+        const words = sanitizeText(text).toLowerCase().match(/[a-zA-ZÀ-ÿ\u0900-\u097F][\wÀ-ÿ\u0900-\u097F+-]*/g) || [];
+        const freq = {};
+        words.forEach(w => {
+          if (w.length < 3 || stopwords.has(w)) return;
+          freq[w] = (freq[w] || 0) + 1;
+        });
+        return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,20).map(e=>e[0]);
+      }
+
+      function keywordOptimize() {
+        const jd = $('jobDescription').value;
+        const top = extractKeywords(jd);
+        const resume = fields.map(f => $(f).value.toLowerCase()).join(' ');
+        const matched = top.filter(k => resume.includes(k));
+        const missing = top.filter(k => !resume.includes(k));
+        const matchPct = top.length ? Math.round((matched.length / top.length) * 100) : 0;
+        const lang = i18n[currentLang()] || i18n.en;
+        $('keywordOutput').textContent = `${lang.match}: ${matchPct}% | Top: ${top.join(', ') || 'N/A'} | ${lang.missing}: ${missing.join(', ') || 'None'}`;
+      }
+
+      function tailorResume() {
+        const d = getData();
+        const top = extractKeywords($('jobDescription').value);
+        const missing = top.filter(k => !fields.map(f=>d[f].toLowerCase()).join(' ').includes(k)).slice(0,8);
+        const suggestions = [];
+        if (missing.length) suggestions.push(`Integrate these terms naturally in summary or experience: ${missing.join(', ')}.`);
+        if (d.summary.length < 120 && missing.length) suggestions.push(`Suggested summary line: Experienced professional delivering ${missing.slice(0,3).join(', ')} with measurable impact and cross-functional collaboration.`);
+        if (!suggestions.length) suggestions.push('Your resume already reflects the major job keywords. Fine-tune by quantifying outcomes.');
+        const lang = i18n[currentLang()] || i18n.en;
+        $('tailorOutput').textContent = `${lang.suggestions}: ${suggestions.join(' ')}`;
+      }
+
+      function exportPDF() {
+        renderResume();
+        window.print();
+      }
+
+      function crc32(str) {
+        let c; const table = crc32.table || (crc32.table = (()=>{let t=[];for(let n=0;n<256;n++){c=n;for(let k=0;k<8;k++)c=((c&1)?(0xEDB88320^(c>>>1)):(c>>>1));t[n]=c;}return t;})());
+        let crc = 0 ^ (-1);
+        for (let i=0; i<str.length; i++) crc = (crc >>> 8) ^ table[(crc ^ str.charCodeAt(i)) & 0xFF];
+        return (crc ^ (-1)) >>> 0;
+      }
+      function toUint32LE(n){return [n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255];}
+      function toUint16LE(n){return [n&255,(n>>>8)&255];}
+      function makeDocx(files) {
+        const encoder = new TextEncoder();
+        let local = [], central = [], offset = 0;
+        files.forEach(file => {
+          const nameBytes = encoder.encode(file.name);
+          const dataBytes = encoder.encode(file.data);
+          const crc = crc32(file.data);
+          const lf = [80,75,3,4,20,0,0,0,0,0,0,0,0,0,...toUint32LE(crc),...toUint32LE(dataBytes.length),...toUint32LE(dataBytes.length),...toUint16LE(nameBytes.length),0,0,...nameBytes,...dataBytes];
+          local.push(...lf);
+          const cf = [80,75,1,2,20,0,20,0,0,0,0,0,0,0,...toUint32LE(crc),...toUint32LE(dataBytes.length),...toUint32LE(dataBytes.length),...toUint16LE(nameBytes.length),0,0,0,0,0,0,0,0,...toUint32LE(offset),...nameBytes];
+          central.push(...cf);
+          offset += lf.length;
+        });
+        const end = [80,75,5,6,0,0,0,0,...toUint16LE(files.length),...toUint16LE(files.length),...toUint32LE(central.length),...toUint32LE(local.length),0,0];
+        return new Blob([new Uint8Array([...local, ...central, ...end])], {type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+      }
+
+      function exportDOCX() {
+        const d = getData();
+        const esc = (s) => sanitizeText(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const paragraphXml = (title, value) => {
+          const lines = value.split(/\n+/).map(v=>v.trim()).filter(Boolean);
+          const head = `<w:p><w:r><w:rPr><w:b/></w:rPr><w:t>${esc(title)}</w:t></w:r></w:p>`;
+          const body = lines.map(l=>`<w:p><w:r><w:t xml:space="preserve">${esc(l.replace(/^[-*•]\s+/, '• '))}</w:t></w:r></w:p>`).join('');
+          return head + body;
+        };
+        const doc = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>
+<w:p><w:r><w:rPr><w:b/><w:sz w:val="32"/></w:rPr><w:t>${esc(d.name || 'Resume')}</w:t></w:r></w:p>
+<w:p><w:r><w:t>${esc([d.email,d.phone].filter(Boolean).join(' | '))}</w:t></w:r></w:p>
+${paragraphXml('Summary', d.summary)}
+${paragraphXml('Experience', d.experience)}
+${paragraphXml('Education', d.education)}
+${paragraphXml('Skills', d.skills)}
+<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>
+</w:body></w:document>`;
+        const files = [
+          {name:'[Content_Types].xml', data:'<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>'},
+          {name:'_rels/.rels', data:'<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>'},
+          {name:'word/document.xml', data: doc}
+        ];
+        const blob = makeDocx(files);
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'resume.docx';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=>URL.revokeObjectURL(a.href), 1200);
+      }
+
+      function scenarioStoreKey() { return 'auraResumeScenarios'; }
+      function saveScenario() {
+        const list = JSON.parse(localStorage.getItem(scenarioStoreKey()) || '[]');
+        const item = { id: `${Date.now()}-${Math.random().toString(16).slice(2,8)}`, ts: new Date().toISOString(), data: getData(), lang: currentLang() };
+        list.unshift(item);
+        localStorage.setItem(scenarioStoreKey(), JSON.stringify(list.slice(0, 30)));
+        renderSavedList();
+      }
+      function loadScenario(id) {
+        const list = JSON.parse(localStorage.getItem(scenarioStoreKey()) || '[]');
+        const found = list.find(x=>x.id===id);
+        if (!found) return;
+        fields.forEach(f => $(f).value = found.data[f] || '');
+        $('language').value = found.lang || 'en';
+        applyLanguage();
+        renderResume();
+      }
+      function deleteScenario(id) {
+        const list = JSON.parse(localStorage.getItem(scenarioStoreKey()) || '[]').filter(x=>x.id!==id);
+        localStorage.setItem(scenarioStoreKey(), JSON.stringify(list));
+        renderSavedList();
+      }
+      function renderSavedList() {
+        const list = JSON.parse(localStorage.getItem(scenarioStoreKey()) || '[]');
+        const box = $('savedList'); box.innerHTML = '';
+        list.forEach(item => {
+          const row = document.createElement('div'); row.className='save-item';
+          const t = document.createElement('span'); t.textContent = `${new Date(item.ts).toLocaleString()} (${item.id.slice(-6)})`;
+          const actions = document.createElement('div');
+          const l = document.createElement('button'); l.className='secondary'; l.textContent='Load'; l.addEventListener('click', ()=>loadScenario(item.id));
+          const d = document.createElement('button'); d.className='secondary'; d.textContent='Delete'; d.addEventListener('click', ()=>deleteScenario(item.id));
+          actions.append(l,d); row.append(t,actions); box.appendChild(row);
+        });
+      }
+
+      let raf = 0;
+      function drawScore(score) {
+        const c = $('scoreChart'); const ctx = c.getContext('2d');
+        if (!ctx) return;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          ctx.clearRect(0,0,c.width,c.height);
+          const center=80, r=62;
+          ctx.lineWidth=12; ctx.strokeStyle='#d1d5db'; ctx.beginPath(); ctx.arc(center,center,r,0,Math.PI*2); ctx.stroke();
+          const color = score>=80?'#16a34a':score>=60?'#ca8a04':'#dc2626';
+          ctx.strokeStyle=color; ctx.beginPath(); ctx.arc(center,center,r,-Math.PI/2,(-Math.PI/2)+(Math.PI*2*(score/100))); ctx.stroke();
+          ctx.fillStyle = '#374151'; ctx.font='700 22px Inter, sans-serif'; ctx.textAlign='center'; ctx.fillText(score+'%', center, center+8);
+        });
+      }
+
+      function currentLang() { return $('language').value || 'en'; }
+      function applyLanguage() {
+        const lang = i18n[currentLang()] || i18n.en;
+        $('heroSub').textContent = lang.heroSub;
+        localStorage.setItem('auraLang', currentLang());
+        updateWordCount();
+        scoreResume();
+        keywordOptimize();
+        tailorResume();
+      }
+
+      function debounce(fn, wait) {
+        let t;
+        return function() {
+          const args = arguments;
+          clearTimeout(t);
+          t = setTimeout(()=>fn.apply(null,args), wait);
+        };
+      }
+
+      function validate() {
+        const d = getData();
+        if (!d.name || !d.email) { $('validation').textContent='Name and email are required for complete resume readiness.'; return false; }
+        $('validation').textContent='';
+        return true;
+      }
+
+      function initAds() {
+        if (!window.adsbygoogle || !Array.isArray(window.adsbygoogle)) window.adsbygoogle = window.adsbygoogle || [];
+        document.querySelectorAll('.adsbygoogle').forEach(() => {
+          try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        $('year').textContent = new Date().getFullYear();
+        const savedTheme = localStorage.getItem('auraTheme');
+        if (savedTheme === 'dark') document.body.classList.add('dark');
+        const savedLang = localStorage.getItem('auraLang');
+        if (savedLang && i18n[savedLang]) $('language').value = savedLang;
+
+        const rerenderDebounced = debounce(() => { renderResume(); scoreResume(); }, 150);
+        fields.concat(['jobDescription']).forEach(id => $(id).addEventListener('input', rerenderDebounced));
+        $('jobDescription').addEventListener('input', debounce(() => { keywordOptimize(); tailorResume(); }, 200));
+
+        $('analyzeBtn').addEventListener('click', () => { if (validate()) scoreResume(); });
+        $('optimizeBtn').addEventListener('click', keywordOptimize);
+        $('tailorBtn').addEventListener('click', tailorResume);
+        $('pdfBtn').addEventListener('click', () => { if (validate()) exportPDF(); });
+        $('docxBtn').addEventListener('click', () => { if (validate()) exportDOCX(); });
+        $('saveScenario').addEventListener('click', saveScenario);
+        $('language').addEventListener('change', applyLanguage);
+        $('themeToggle').addEventListener('click', () => {
+          document.body.classList.toggle('dark');
+          localStorage.setItem('auraTheme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        renderResume();
+        scoreResume();
+        keywordOptimize();
+        tailorResume();
+        renderSavedList();
+        applyLanguage();
+        initAds();
+      });
+    })();
+  </script>
+</body>
+</html>
